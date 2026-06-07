@@ -31,20 +31,3 @@ open = true
 wasm_bindgen = "0.2"
 # Default wasm-opt version to use for the rust compiler.
 wasm_opt = "1.0.20"
-
-[hooks]
-# Define custom build hooks.
-# Each hook is a command that gets executed at a specific point in the build process.
-# The available hooks are: `pre-build`, `build`, `post-build`.
-# The `build` hook is special in that it is expected to produce the final build 
-# artifacts, and it is the only hook that is required.
-
-# Pre-build hook: runs before the build process starts.
-# pre-build = "echo 'Pre-build hook'"
-
-# Build hook: runs the actual build process.
-# This is the only required hook.
-build = "cargo build --target wasm32-unknown-unknown --release"
-
-# Post-build hook: runs after the build process completes.
-# post-build = "echo 'Post-build hook'"
