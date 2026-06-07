@@ -28,6 +28,6 @@ open = true
 
 [tools]
 # Default wasm-bindgen version to use for the rust compiler.
-wasm_bindgen = "0.2"
+wasm_bindgen = "0.2.122"
 # Default wasm-opt version to use for the rust compiler.
 wasm_opt = "1.0.20"
