@@ -60,17 +60,11 @@
             to { transform: rotate(360deg); }
         }
     </style>
+    <link data-trunk rel="rust" href="../ui/Cargo.toml" />
 </head>
 <body>
     <div id="app">
         <!-- Yew app will be mounted here -->
     </div>
-    <script type="module">
-        import init from '/pkg/sankey_ui.js';
-        async function run() {
-            await init();
-        }
-        run().catch(console.error);
-    </script>
 </body>
 </html>
