@@ -12,25 +12,23 @@ crate-type = ["cdylib"]
 [dependencies]
 # Workspace dependencies
 sankey-core = { path = "../core" }
-charming-wrapper = { path = "../charming-wrapper" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 uuid = { workspace = true }
+thiserror = { workspace = true }
 
 # Yew for full Rust frontend
 yew = { version = "0.21", features = ["csr"] }
 yew-router = "0.18"
-gloo = { version = "0.10", features = ["serde"] }
+gloo = "0.10"
 wasm-bindgen = "0.2"
 web-sys = { version = "0.3", features = ["console", "Window", "Document", "HtmlElement", "MouseEvent", "KeyboardEvent"] }
 console_log = "1.0"
 log = "0.4"
 
-# For styling
-yew-styles = "0.1"
 
-# For file downloads (export functionality)
-gloo-file = "0.3"
+
+
 
 [dev-dependencies]
 sankey-core = { path = "../core", features = ["testing"] }

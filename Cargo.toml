@@ -1,7 +1,6 @@
 [workspace]
 members = [
     "core",
-    "charming-wrapper",
     "ui",
 ]
 resolver = "2"
@@ -17,9 +16,6 @@ thiserror = "1.0"
 # Testing
 cucumber = { version = "0.20", features = ["macros"] }
 pretty_assertions = "1.0"
-
-# Charming library for Sankey diagrams
-charming = "0.1"
 
 [profile.dev]
 opt-level = 1
