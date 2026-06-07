@@ -11,13 +11,8 @@
     "clippy": "cargo clippy",
     "fmt": "cargo fmt"
   },
-  "dependencies": {
-    "@trunk-rs/web": "^0.1"
-  },
   "devDependencies": {
-    "trunk": "^0.18",
-    "wasm-pack": "^0.12",
-    "@wasm-tool/wasm-pack-plugin": "^1.0"
+    "trunk": "^0.18"
   },
   "keywords": [
     "sankey",

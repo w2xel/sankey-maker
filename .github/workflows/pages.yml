@@ -33,20 +33,14 @@ jobs:
           toolchain: stable
           target: wasm32-unknown-unknown
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Install Trunk
         run: |
-          cd ui
-          npm install
+          cargo install trunk
 
       - name: Build WASM app with Trunk
         run: |
           cd ui
-          npm run build
+          trunk build --release
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
