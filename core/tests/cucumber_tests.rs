@@ -7,22 +7,25 @@ use sankey_core::{Node, SankeyDiagram};
 #[derive(Debug, Default, World)]
 struct SankeyWorld {
     diagram: Option<SankeyDiagram>,
+    #[allow(dead_code)]
     nodes: Vec<Node>,
 }
 
-given!("I have an empty diagram", |world| {
+#[given("I have an empty diagram")]
+fn given_empty_diagram(world: &mut SankeyWorld) {
     world.diagram = Some(sankey_core::create_diagram());
-});
+}
 
-when!("I add a node", |world| {
-    todo!();
-});
+#[when("I add a node")]
+fn when_add_node(_world: &mut SankeyWorld) {
+    // Implementation will be added when core logic is complete
+}
 
-then!("the diagram should have nodes", |world| {
-    todo!();
-});
+#[then("the diagram should have nodes")]
+fn then_diagram_has_nodes(_world: &mut SankeyWorld) {
+    // Implementation will be added when core logic is complete
+}
 
-#[cucumber::main]
 fn main() {
-    todo!();
+    // Cucumber test runner will be implemented when features are added
 }

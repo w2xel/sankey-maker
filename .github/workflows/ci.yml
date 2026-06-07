@@ -83,6 +83,7 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
+          target: wasm32-unknown-unknown
 
       - name: Build release
         run: cargo build --release --workspace

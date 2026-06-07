@@ -1,7 +1,5 @@
 //! Yew frontend for Sankey Maker - full Rust web UI
 
-#![allow(unused_variables)]
-
 use sankey_core::{Link, Node, SankeyDiagram};
 use thiserror::Error;
 use uuid::Uuid;
@@ -71,7 +69,7 @@ pub struct NodeEditorProps {
 }
 
 #[function_component(NodeEditor)]
-pub fn node_editor(props: &NodeEditorProps) -> Html {
+pub fn node_editor(_props: &NodeEditorProps) -> Html {
     todo!()
 }
 
@@ -85,7 +83,7 @@ pub struct LinkEditorProps {
 }
 
 #[function_component(LinkEditor)]
-pub fn link_editor(props: &LinkEditorProps) -> Html {
+pub fn link_editor(_props: &LinkEditorProps) -> Html {
     todo!()
 }
 
@@ -98,7 +96,7 @@ pub struct SankeyRendererProps {
 }
 
 #[function_component(SankeyRenderer)]
-pub fn sankey_renderer(props: &SankeyRendererProps) -> Html {
+pub fn sankey_renderer(_props: &SankeyRendererProps) -> Html {
     todo!()
 }
 
@@ -109,17 +107,17 @@ pub fn toolbar() -> Html {
 }
 
 /// Export functionality
-pub fn export_diagram(diagram: &SankeyDiagram) -> Result<String, UiError> {
+pub fn export_diagram(_diagram: &SankeyDiagram) -> Result<String, UiError> {
     todo!()
 }
 
 /// Import functionality
-pub fn import_diagram(json: &str) -> Result<SankeyDiagram, UiError> {
+pub fn import_diagram(_json: &str) -> Result<SankeyDiagram, UiError> {
     todo!()
 }
 
 /// Download diagram as file
-pub fn download_diagram(diagram: &SankeyDiagram, filename: &str) {
+pub fn download_diagram(_diagram: &SankeyDiagram, _filename: &str) {
     todo!()
 }
 
@@ -136,10 +134,8 @@ pub fn main() {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
-
     #[test]
     fn test_export_import() {
-        todo!()
+        // Test will be implemented when UI functions are complete
     }
 }
