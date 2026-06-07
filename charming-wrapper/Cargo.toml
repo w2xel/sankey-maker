@@ -1,0 +1,20 @@
+[package]
+name = "charming-wrapper"
+version = "0.1.0"
+edition = "2021"
+authors = ["w2xel"]
+description = "Abstraction layer for the charming Sankey diagram library"
+license = "MIT"
+
+[dependencies]
+# Workspace dependencies
+sankey-core = { path = "../core" }
+charming = { workspace = true }
+thiserror = { workspace = true }
+
+[lib]
+name = "charming_wrapper"
+path = "src/lib.rs"
+
+[dev-dependencies]
+sankey-core = { path = "../core", features = ["testing"] }

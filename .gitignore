@@ -1,0 +1,55 @@
+# Rust
+/target
+**/target
+*.rs.bk
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+
+# WASM
+*.wasm
+pkg/
+
+# Trunk
+ui/dist/
+
+# Cargo
+Cargo.lock
+
+# Node (for Trunk)
+node_modules/
+
+# Test coverage
+coverage/
+*.lcov
+
+# Documentation
+doc/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

@@ -1,0 +1,50 @@
+[build]
+# The index HTML file to drive the bundling.
+target = "index.html"
+# Build in release mode.
+release = false
+# The output dir for all final assets.
+dist = "dist"
+# The public URL from which assets are to be served.
+public_url = "/"
+
+# Whether to include hash values in the output file names.
+filehash = true
+
+[watch]
+# Paths to watch. The default is to watch the entire project directory.
+watch = ["src", "../core/src", "../charming-wrapper/src"]
+
+# Paths to ignore. The default is to ignore nothing.
+ignore = []
+
+[serve]
+# The address to serve on.
+address = "127.0.0.1"
+# The port to serve on.
+port = 8080
+# Open a browser tab once the initial build is complete.
+open = true
+
+[tools]
+# Default wasm-bindgen version to use for the rust compiler.
+wasm_bindgen = "0.2"
+# Default wasm-opt version to use for the rust compiler.
+wasm_opt = "1.0.20"
+
+[hooks]
+# Define custom build hooks.
+# Each hook is a command that gets executed at a specific point in the build process.
+# The available hooks are: `pre-build`, `build`, `post-build`.
+# The `build` hook is special in that it is expected to produce the final build 
+# artifacts, and it is the only hook that is required.
+
+# Pre-build hook: runs before the build process starts.
+# pre-build = "echo 'Pre-build hook'"
+
+# Build hook: runs the actual build process.
+# This is the only required hook.
+build = "cargo build --target wasm32-unknown-unknown --release"
+
+# Post-build hook: runs after the build process completes.
+# post-build = "echo 'Post-build hook'"

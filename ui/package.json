@@ -1,0 +1,32 @@
+{
+  "name": "sankey-maker",
+  "version": "0.1.0",
+  "description": "Sankey Diagram Maker for Personal Finance - Full Rust Web App",
+  "type": "module",
+  "scripts": {
+    "dev": "trunk serve --open",
+    "build": "trunk build --release",
+    "test": "cargo test",
+    "check": "cargo check",
+    "clippy": "cargo clippy",
+    "fmt": "cargo fmt"
+  },
+  "dependencies": {
+    "@trunk-rs/web": "^0.1"
+  },
+  "devDependencies": {
+    "trunk": "^0.18",
+    "wasm-pack": "^0.12",
+    "@wasm-tool/wasm-pack-plugin": "^1.0"
+  },
+  "keywords": [
+    "sankey",
+    "diagram",
+    "finance",
+    "rust",
+    "yew",
+    "wasm"
+  ],
+  "author": "w2xel",
+  "license": "MIT"
+}

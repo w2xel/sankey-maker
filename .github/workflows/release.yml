@@ -1,0 +1,78 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+
+      - name: Build release binaries
+        run: |
+          cargo build --release --workspace
+          # Build for different platforms
+          cargo build --release --target x86_64-unknown-linux-gnu
+          cargo build --release --target x86_64-pc-windows-gnu
+          cargo build --release --target x86_64-apple-darwin
+
+      - name: Build web (WASM)
+        run: |
+          rustup target add wasm32-unknown-unknown
+          cd ui
+          cargo build --target wasm32-unknown-unknown --release
+
+      - name: Package artifacts
+        run: |
+          mkdir -p release
+          cp target/release/sankey-ui release/
+          cp target/x86_64-unknown-linux-gnu/release/sankey-ui release/sankey-ui-linux
+          cp target/x86_64-pc-windows-gnu/release/sankey-ui.exe release/sankey-ui-windows.exe
+          cp target/x86_64-apple-darwin/release/sankey-ui release/sankey-ui-macos
+          cp ui/target/wasm32-unknown-unknown/release/sankey_ui.wasm release/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            release/*
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    name: Publish to crates.io
+    runs-on: ubuntu-latest
+    needs: release
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+
+      - name: Publish core library
+        run: |
+          cd core
+          cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}
+
+      - name: Publish charming wrapper
+        run: |
+          cd charming-wrapper
+          cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}
