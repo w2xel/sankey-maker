@@ -1473,6 +1473,7 @@ dependencies = [
 name = "sankey-ui"
 version = "0.1.0"
 dependencies = [
+ "console_error_panic_hook",
  "console_log",
  "gloo 0.10.0",
  "log",
