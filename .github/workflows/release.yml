@@ -20,6 +20,17 @@ jobs:
           profile: minimal
           toolchain: stable
 
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
       - name: Build release binaries
         run: |
           cargo build --release --workspace
@@ -27,6 +38,14 @@ jobs:
           cargo build --release --target x86_64-unknown-linux-gnu
           cargo build --release --target x86_64-pc-windows-gnu
           cargo build --release --target x86_64-apple-darwin
+
+      - name: Cache ui target directory
+        uses: actions/cache@v3
+        with:
+          path: ui/target
+          key: ${{ runner.os }}-ui-target-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-ui-target-
 
       - name: Build web (WASM)
         run: |
@@ -66,6 +85,16 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
 
       - name: Publish core library
         run: |

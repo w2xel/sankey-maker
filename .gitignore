@@ -36,9 +36,6 @@ pkg/
 # Trunk
 ui/dist/
 
-# Cargo
-Cargo.lock
-
 # Node (for Trunk)
 node_modules/
 

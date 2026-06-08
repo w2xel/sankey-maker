@@ -32,8 +32,27 @@ jobs:
           target: wasm32-unknown-unknown
 
       - name: Install Trunk
-        run: |
-          cargo install trunk
+        uses: jetli/trunk-action@v1
+        with:
+          version: latest
+
+      - name: Cache cargo registry and index
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
+
+      - name: Cache ui target directory
+        uses: actions/cache@v3
+        with:
+          path: ui/target
+          key: ${{ runner.os }}-ui-target-${{ hashFiles('Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-ui-target-
 
       - name: Build WASM app with Trunk
         run: |
