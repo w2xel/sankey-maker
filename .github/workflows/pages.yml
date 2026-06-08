@@ -32,9 +32,9 @@ jobs:
           target: wasm32-unknown-unknown
 
       - name: Install Trunk
-        uses: jetli/trunk-action@v1
+        uses: jetli/trunk-action@v0.5.1
         with:
-          version: latest
+          version: 'latest'
 
       - name: Cache cargo registry and index
         uses: actions/cache@v3
