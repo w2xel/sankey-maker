@@ -19,7 +19,12 @@ pub enum UiError {
 /// Main application component
 #[function_component(App)]
 pub fn app() -> Html {
-    todo!()
+    html! {
+        <div class="app-container">
+            <h1>{ "Sankey Maker" }</h1>
+            <p>{ "Loading..." }</p>
+        </div>
+    }
 }
 
 /// Route definitions for the application
@@ -39,25 +44,38 @@ pub enum Route {
 /// Switch component for routing
 #[function_component(Main)]
 pub fn main_component() -> Html {
-    todo!()
+    html! {
+        <BrowserRouter>
+            <Switch<Route> render={switch} />
+        </BrowserRouter>
+    }
+}
+
+fn switch(routes: Route) -> Html {
+    match routes {
+        Route::Home => html! { <App /> },
+        Route::Diagram { id } => html! { <div>{ format!("Diagram: {}", id) }</div> },
+        Route::NewDiagram => html! { <div>{ "New Diagram" }</div> },
+        Route::NotFound => html! { <div>{ "404 - Not Found" }</div> },
+    }
 }
 
 /// Home page component
 #[function_component(Home)]
 pub fn home() -> Html {
-    todo!()
+    html! { <App /> }
 }
 
 /// Diagram editor component
 #[function_component(DiagramEditor)]
 pub fn diagram_editor() -> Html {
-    todo!()
+    html! { <div>{ "Diagram Editor" }</div> }
 }
 
 /// Diagram viewer component
 #[function_component(DiagramViewer)]
 pub fn diagram_viewer() -> Html {
-    todo!()
+    html! { <div>{ "Diagram Viewer" }</div> }
 }
 
 /// Node editor component
@@ -70,7 +88,7 @@ pub struct NodeEditorProps {
 
 #[function_component(NodeEditor)]
 pub fn node_editor(_props: &NodeEditorProps) -> Html {
-    todo!()
+    html! { <div>{ "Node Editor" }</div> }
 }
 
 /// Link editor component
@@ -84,7 +102,7 @@ pub struct LinkEditorProps {
 
 #[function_component(LinkEditor)]
 pub fn link_editor(_props: &LinkEditorProps) -> Html {
-    todo!()
+    html! { <div>{ "Link Editor" }</div> }
 }
 
 /// SVG renderer component for Sankey diagrams
@@ -97,39 +115,49 @@ pub struct SankeyRendererProps {
 
 #[function_component(SankeyRenderer)]
 pub fn sankey_renderer(_props: &SankeyRendererProps) -> Html {
-    todo!()
+    html! { <div>{ "Sankey Renderer" }</div> }
 }
 
 /// Toolbar component
 #[function_component(Toolbar)]
 pub fn toolbar() -> Html {
-    todo!()
+    html! { <div>{ "Toolbar" }</div> }
 }
 
 /// Export functionality
-pub fn export_diagram(_diagram: &SankeyDiagram) -> Result<String, UiError> {
-    todo!()
+pub fn export_diagram(diagram: &SankeyDiagram) -> Result<String, UiError> {
+    sankey_core::serialize_diagram(diagram).map_err(UiError::Core)
 }
 
 /// Import functionality
-pub fn import_diagram(_json: &str) -> Result<SankeyDiagram, UiError> {
-    todo!()
+pub fn import_diagram(json: &str) -> Result<SankeyDiagram, UiError> {
+    sankey_core::deserialize_diagram(json).map_err(UiError::Core)
 }
 
 /// Download diagram as file
 pub fn download_diagram(_diagram: &SankeyDiagram, _filename: &str) {
-    todo!()
+    // TODO: Implement file download
 }
 
 /// Upload diagram from file
 pub async fn upload_diagram() -> Option<SankeyDiagram> {
-    todo!()
+    // TODO: Implement file upload
+    None
 }
 
 /// Entry point for the WASM application
 #[wasm_bindgen(start)]
 pub fn main() {
-    todo!()
+    // Initialize panic hook for better error messages
+    console_error_panic_hook::set_once();
+
+    // Initialize logging
+    console_log::init_with_level(log::Level::Trace).unwrap();
+
+    log::info!("Sankey Maker WASM initialized");
+
+    // Mount the app - render the main component
+    yew::Renderer::<Main>::new().render();
 }
 
 #[cfg(test)]

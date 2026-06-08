@@ -24,6 +24,7 @@ gloo = "0.10"
 wasm-bindgen = "0.2"
 web-sys = { version = "0.3", features = ["console", "Window", "Document", "HtmlElement", "MouseEvent", "KeyboardEvent"] }
 console_log = "1.0"
+console_error_panic_hook = "0.1"
 log = "0.4"
 
 
